@@ -4,6 +4,7 @@
  */
 'use strict'
 
+import '@babel/polyfill'
 import TheCam from '../lib/TheCam'
 import React from 'react'
 import { ok, equal } from 'assert'
@@ -18,7 +19,7 @@ describe('the-cam', () => {
 
   it('Render a component', () => {
     let element = render(
-       <TheCam />
+      <TheCam/>
     )
     ok(element)
   })
