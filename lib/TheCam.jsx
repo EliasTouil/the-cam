@@ -70,6 +70,7 @@ class TheCam extends React.Component {
             <TheSpin className='the-cam-spin'
                      cover
                      enabled
+                     size='x-large'
             />)
           }
           {rejected ? (
