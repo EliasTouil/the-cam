@@ -3,7 +3,8 @@
 import c from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { eventHandlersFor, htmlAttributesFor } from 'the-component-util'
+import { unlessProduction } from 'the-check'
+import { changedProps, eventHandlersFor, htmlAttributesFor } from 'the-component-util'
 import { TheMedia } from 'the-media'
 import { TheSpin } from 'the-spin'
 
@@ -13,7 +14,7 @@ import { TheSpin } from 'the-spin'
 class TheCam extends React.Component {
   constructor (props) {
     super(props)
-    this.videoRef = React.createRef()
+    this.videoRef = props.videoRef || React.createRef()
 
     const { audio, video } = props
     this.media = new TheMedia({ audio, video })
@@ -29,10 +30,15 @@ class TheCam extends React.Component {
   }
 
   componentDidUpdate (prevPros) {
-    const { disabled } = this.props
-    if (disabled !== prevPros.disabled) {
-      void this.applyEnabled(!disabled)
+    const diff = changedProps(prevPros, this.props)
+    if ('disabled' in diff) {
+      void this.applyEnabled(!diff.disabled)
     }
+    unlessProduction(() => {
+      if ('videoRef' in diff) {
+        throw new Error(`[TheCam] Video ref can not be changed`)
+      }
+    })
   }
 
   componentWillUnmount () {

@@ -13,6 +13,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "prop-types": "^15.6.2",
+    "the-check": "^2.0.17",
     "the-component-util": "^3.0.20",
     "the-media": "^1.0.13",
     "the-spin": "^3.1.12",
