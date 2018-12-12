@@ -1,0 +1,62 @@
+{
+  "name": "the-cam",
+  "description": "Embed camera component",
+  "version": "1.0.0",
+  "author": {
+    "name": "okunishinishi",
+    "email": "okunishinishi@gmail.com",
+    "url": "http://okunishitaka.com"
+  },
+  "bugs": {
+    "url": "https://github.com/the-labo/the-cam/issues"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "prop-types": "^15.6.2",
+    "the-component-util": "^3.0.20",
+    "the-media": "^1.0.13",
+    "the-spin": "^3.1.12",
+    "the-style": "^2.2.3"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.1.5",
+    "objnest": "^5.0.3",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-router-dom": "^4.3.1",
+    "the-component-demo": "^4.0.17",
+    "the-script-build": "^4.0.11",
+    "the-script-doc": "^1.0.2",
+    "the-script-release": "^1.0.8",
+    "the-script-share": "^1.0.5",
+    "the-script-test": "^2.1.6",
+    "the-script-update": "^2.0.0",
+    "the-templates": "^5.0.2"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
+  "homepage": "https://github.com/the-labo/the-cam#readme",
+  "keywords": [
+    "react-component",
+    "the"
+  ],
+  "license": "MIT",
+  "main": "shim",
+  "peerDependencies": {
+    "react": ">=16",
+    "react-dom": ">=16"
+  },
+  "repository": "the-labo/the-cam",
+  "scripts": {
+    "build": "the-script-build",
+    "doc": "the-script-doc",
+    "prepare": "the-script-build && the-script-doc",
+    "release": "the-script-release -y",
+    "share": "the-script-share",
+    "test": "the-script-test",
+    "update": "the-script-update",
+    "watch": "the-script-build -w"
+  }
+}

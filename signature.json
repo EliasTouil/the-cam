@@ -1,0 +1,133 @@
+{
+  "TheCam": {
+    "description": "Embed camera component",
+    "displayName": "TheCam",
+    "methods": [
+      {
+        "name": "start",
+        "docblock": null,
+        "modifiers": [
+          "async"
+        ],
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "stop",
+        "docblock": null,
+        "modifiers": [
+          "async"
+        ],
+        "params": [],
+        "returns": null
+      }
+    ],
+    "props": {
+      "audio": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "object"
+            },
+            {
+              "name": "bool"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Audio media constraint",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "height": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "150",
+          "computed": false
+        }
+      },
+      "rejectedMessage": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "Message to show when camera access rejected",
+        "defaultValue": {
+          "value": "'Failed to access camera'",
+          "computed": false
+        }
+      },
+      "video": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "object"
+            },
+            {
+              "name": "bool"
+            }
+          ]
+        },
+        "required": false,
+        "description": "Video media constraint",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "width": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "string"
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "'100%'",
+          "computed": false
+        }
+      }
+    }
+  },
+  "TheCamStyle": {
+    "description": "Style for TheCam",
+    "displayName": "TheCamStyle",
+    "methods": [],
+    "props": {
+      "options": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Style options",
+        "defaultValue": {
+          "value": "{}",
+          "computed": false
+        }
+      }
+    }
+  }
+}
