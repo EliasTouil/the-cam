@@ -11,6 +11,7 @@
     "url": "https://github.com/the-labo/the-cam/issues"
   },
   "dependencies": {
+    "asleep": "^1.0.3",
     "classnames": "^2.2.6",
     "prop-types": "^15.6.2",
     "the-check": "^2.0.17",

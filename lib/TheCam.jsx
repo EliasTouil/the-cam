@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { unlessProduction } from 'the-check'
 import { changedProps, eventHandlersFor, htmlAttributesFor } from 'the-component-util'
+import asleep from 'asleep'
 import { TheMedia } from 'the-media'
 import { TheSpin } from 'the-spin'
 
@@ -101,6 +102,7 @@ class TheCam extends React.Component {
   async start () {
     const { media } = this
     this.setState({ busy: true })
+    await asleep(0)
     try {
       await media.start()
     } catch (e) {

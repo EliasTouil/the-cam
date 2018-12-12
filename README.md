@@ -127,7 +127,9 @@ Embed camera component
 | Name | Type | Description | Default |
 | --- | --- | ---- | ---- |
 | `audio` | union  | Audio media constraint | `false` |
+| `disabled` | bool  | Camera disabled | `false` |
 | `height` | union  |  | `150` |
+| `onStream` | func  | Handle for stream | `null` |
 | `rejectedMessage` | node  | Message to show when camera access rejected | `'Failed to access camera'` |
 | `video` | union  | Video media constraint | `true` |
 | `width` | union  |  | `'100%'` |
