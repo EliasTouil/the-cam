@@ -1,11 +1,11 @@
 'use strict'
 
+import asleep from 'asleep'
 import c from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { unlessProduction } from 'the-check'
 import { changedProps, eventHandlersFor, htmlAttributesFor } from 'the-component-util'
-import asleep from 'asleep'
 import { TheMedia } from 'the-media'
 import { TheSpin } from 'the-spin'
 
