@@ -4,6 +4,20 @@
     "displayName": "TheCam",
     "methods": [
       {
+        "name": "applyEnabled",
+        "docblock": null,
+        "modifiers": [
+          "async"
+        ],
+        "params": [
+          {
+            "name": "enabled",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
         "name": "start",
         "docblock": null,
         "modifiers": [
@@ -42,6 +56,17 @@
           "computed": false
         }
       },
+      "disabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Camera disabled",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
       "height": {
         "type": {
           "name": "union",
@@ -58,6 +83,17 @@
         "description": "",
         "defaultValue": {
           "value": "150",
+          "computed": false
+        }
+      },
+      "onStream": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Handle for stream",
+        "defaultValue": {
+          "value": "null",
           "computed": false
         }
       },
