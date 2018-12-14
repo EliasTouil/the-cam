@@ -6,9 +6,11 @@
 'use strict'
 
 import TheCam from './TheCam'
+import TheCamInput from './TheCamInput'
 import TheCamStyle from './TheCamStyle'
 
 export {
  TheCam,
+ TheCamInput,
  TheCamStyle,
 }

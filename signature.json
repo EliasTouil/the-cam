@@ -148,6 +148,11 @@
       }
     }
   },
+  "TheCamInput": {
+    "description": "Embed camera component",
+    "displayName": "TheCamInput",
+    "methods": []
+  },
   "TheCamStyle": {
     "description": "Style for TheCam",
     "displayName": "TheCamStyle",

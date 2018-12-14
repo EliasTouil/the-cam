@@ -28,12 +28,22 @@ class TheCam extends React.Component {
 
   componentDidMount () {
     void this.applyEnabled(!this.props.disabled)
+
+    const {
+      onVideo,
+    } = this.props
   }
 
   componentDidUpdate (prevPros) {
     const diff = changedProps(prevPros, this.props)
     if ('disabled' in diff) {
       void this.applyEnabled(!diff.disabled)
+    }
+
+    {
+      const { onMedia, onVideo } = this.props
+      onVideo && onVideo(this.videoRef.current)
+      onMedia && onMedia(this.media)
     }
     unlessProduction(() => {
       if ('videoRef' in diff) {
