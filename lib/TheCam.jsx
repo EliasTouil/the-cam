@@ -19,6 +19,7 @@ class TheCam extends React.Component {
 
     const { audio, video } = props
     this.media = new TheMedia({ audio, video })
+    this.handleVideoLoad = this.handleVideoLoad.bind(this)
     this.state = {
       busy: false,
       rejected: false,
@@ -29,9 +30,9 @@ class TheCam extends React.Component {
   componentDidMount () {
     void this.applyEnabled(!this.props.disabled)
 
-    const {
-      onVideo,
-    } = this.props
+    const { onMedia, onVideo } = this.props
+    onVideo && onVideo(this.videoRef.current)
+    onMedia && onMedia(this.media)
   }
 
   componentDidUpdate (prevPros) {
@@ -40,11 +41,6 @@ class TheCam extends React.Component {
       void this.applyEnabled(!diff.disabled)
     }
 
-    {
-      const { onMedia, onVideo } = this.props
-      onVideo && onVideo(this.videoRef.current)
-      onMedia && onMedia(this.media)
-    }
     unlessProduction(() => {
       if ('videoRef' in diff) {
         throw new Error(`[TheCam] Video ref can not be changed`)
@@ -56,6 +52,11 @@ class TheCam extends React.Component {
     if (this.state.running) {
       void this.stop()
     }
+  }
+
+  handleVideoLoad () {
+    const { onReady } = this.props
+    console.log('!!!onReady', !!onReady)
   }
 
   render () {
@@ -91,6 +92,7 @@ class TheCam extends React.Component {
             <React.Fragment>
               <video autoPlay
                      className='the-cam-video'
+                     onLoadedData={this.handleVideoLoad}
                      playsInline
                      ref={this.videoRef}
               />
@@ -118,6 +120,8 @@ class TheCam extends React.Component {
       await media.start()
     } catch (e) {
       this.setState({ busy: false, rejected: true, running: false })
+      const { onReject } = this.props
+      onReject && onReject(e)
       throw e
     }
     const video = this.videoRef.current
@@ -178,6 +182,7 @@ TheCam.defaultProps = {
   audio: false,
   disabled: false,
   height: 150,
+  onReject: null,
   onStream: null,
   rejectedMessage: 'Failed to access camera',
   video: true,

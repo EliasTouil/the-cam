@@ -70,12 +70,13 @@ Usage
 'use strict'
 
 import React from 'react'
-import { TheCam, TheCamStyle } from 'the-cam'
+import { TheCam, TheCamStyle, TheCamInput } from 'the-cam'
 import { TheSpinStyle } from 'the-spin'
 
 class ExampleComponent extends React.Component {
   state = {
     disabled: false,
+    photo01: null,
   }
   start = () => {
     this.setState({ disabled: false })
@@ -83,6 +84,8 @@ class ExampleComponent extends React.Component {
   stop = () => {
     this.setState({ disabled: true })
   }
+
+  handleUpdate = (v) => this.setState(v)
 
   render () {
     return (
@@ -98,6 +101,22 @@ class ExampleComponent extends React.Component {
         <br/>
         <button onClick={this.start}>Start</button>
         <button onClick={this.stop}>Stop</button>
+
+        <br/>
+        <hr/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <section>
+          <h1>As Input</h1>
+          <TheCamInput value={this.state.photo01}
+                       name={'photo01'}
+                       onUpdate={this.handleUpdate}
+          >
+          </TheCamInput>
+        </section>
       </div>
 
     )
@@ -133,11 +152,24 @@ Embed camera component
 | `rejectedMessage` | node  | Message to show when camera access rejected | `'Failed to access camera'` |
 | `video` | union  | Video media constraint | `true` |
 | `width` | union  |  | `'100%'` |
+| `onReject` |   |  | `null` |
 
 ### TheCamInput
 
 Embed camera component
 
+**Props**
+
+| Name | Type | Description | Default |
+| --- | --- | ---- | ---- |
+| `audio` | custom  |  | `TheCam.defaultProps.audio` |
+| `convertFile` | func  |  | `(file) => readFileAsDataURL(file)` |
+| `height` | custom  |  | `TheCam.defaultProps.height` |
+| `onReject` | func  |  | `null` |
+| `onUpdate` | func  |  | `null` |
+| `video` | custom  |  | `TheCam.defaultProps.video` |
+| `width` | custom  |  | `TheCam.defaultProps.width` |
+| `value` |   |  | `null` |
 
 ### TheCamStyle
 

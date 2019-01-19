@@ -1,12 +1,13 @@
 'use strict'
 
 import React from 'react'
-import { TheCam, TheCamStyle } from 'the-cam'
+import { TheCam, TheCamStyle, TheCamInput } from 'the-cam'
 import { TheSpinStyle } from 'the-spin'
 
 class ExampleComponent extends React.Component {
   state = {
     disabled: false,
+    photo01: null,
   }
   start = () => {
     this.setState({ disabled: false })
@@ -14,6 +15,8 @@ class ExampleComponent extends React.Component {
   stop = () => {
     this.setState({ disabled: true })
   }
+
+  handleUpdate = (v) => this.setState(v)
 
   render () {
     return (
@@ -29,6 +32,22 @@ class ExampleComponent extends React.Component {
         <br/>
         <button onClick={this.start}>Start</button>
         <button onClick={this.stop}>Stop</button>
+
+        <br/>
+        <hr/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <section>
+          <h1>As Input</h1>
+          <TheCamInput value={this.state.photo01}
+                       name={'photo01'}
+                       onUpdate={this.handleUpdate}
+          >
+          </TheCamInput>
+        </section>
       </div>
 
     )

@@ -4,6 +4,13 @@
     "displayName": "TheCam",
     "methods": [
       {
+        "name": "handleVideoLoad",
+        "docblock": null,
+        "modifiers": [],
+        "params": [],
+        "returns": null
+      },
+      {
         "name": "applyEnabled",
         "docblock": null,
         "modifiers": [
@@ -145,13 +152,143 @@
           "value": "'100%'",
           "computed": false
         }
+      },
+      "onReject": {
+        "defaultValue": {
+          "value": "null",
+          "computed": false
+        },
+        "required": false
       }
     }
   },
   "TheCamInput": {
     "description": "Embed camera component",
     "displayName": "TheCamInput",
-    "methods": []
+    "methods": [
+      {
+        "name": "handleClear",
+        "docblock": null,
+        "modifiers": [
+          "async"
+        ],
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "handleMedia",
+        "docblock": null,
+        "modifiers": [
+          "async"
+        ],
+        "params": [
+          {
+            "name": "media",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "handleShutter",
+        "docblock": null,
+        "modifiers": [
+          "async"
+        ],
+        "params": [],
+        "returns": null
+      }
+    ],
+    "props": {
+      "audio": {
+        "type": {
+          "name": "custom",
+          "raw": "TheCam.propTypes.audio"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "TheCam.defaultProps.audio",
+          "computed": true
+        }
+      },
+      "convertFile": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "(file) => readFileAsDataURL(file)",
+          "computed": false
+        }
+      },
+      "height": {
+        "type": {
+          "name": "custom",
+          "raw": "TheCam.propTypes.height"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "TheCam.defaultProps.height",
+          "computed": true
+        }
+      },
+      "onReject": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "null",
+          "computed": false
+        }
+      },
+      "onUpdate": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "null",
+          "computed": false
+        }
+      },
+      "video": {
+        "type": {
+          "name": "custom",
+          "raw": "TheCam.propTypes.video"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "TheCam.defaultProps.video",
+          "computed": true
+        }
+      },
+      "width": {
+        "type": {
+          "name": "custom",
+          "raw": "TheCam.propTypes.width"
+        },
+        "required": false,
+        "description": "",
+        "defaultValue": {
+          "value": "TheCam.defaultProps.width",
+          "computed": true
+        }
+      },
+      "value": {
+        "defaultValue": {
+          "value": "null",
+          "computed": false
+        },
+        "required": false
+      }
+    }
   },
   "TheCamStyle": {
     "description": "Style for TheCam",

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { asStyleData } from 'the-component-util'
 import { TheStyle } from 'the-style'
+import CamStyleData from './styleData/CamStyleData'
 
 /** Style for TheCam */
 const TheCamStyle = ({ className, id, options }) => (
@@ -30,28 +31,31 @@ TheCamStyle.data = (options) => {
     dominantColor = ThemeValues.dominantColor,
     errorColor = ThemeValues.errorColor,
   } = options
-  return asStyleData({
-    '.the-cam': {
-      position: 'relative',
-    },
-    '.the-cam-inner': {},
-    '.the-cam-rejected': {
-      color: errorColor,
-      display: 'block',
-      fontSize: '2.5em',
-      fontStyle: 'italic',
-      margin: '48px auto',
-      textAlign: 'center',
-    },
-    '.the-cam-spin': {},
-    '.the-cam-video': {
-      background: '#333',
-      height: '100%',
-      objectFit: 'contain',
-      width: '100%',
-    },
+  return {
+    ...asStyleData({
+      '.the-cam': {
+        position: 'relative',
+      },
+      '.the-cam-inner': {},
+      '.the-cam-rejected': {
+        color: errorColor,
+        display: 'block',
+        fontSize: '2.5em',
+        fontStyle: 'italic',
+        margin: '48px auto',
+        textAlign: 'center',
+      },
+      '.the-cam-spin': {},
+      '.the-cam-video': {
+        background: '#333',
+        height: '100%',
+        objectFit: 'contain',
+        width: '100%',
+      },
 
-  })
+    }),
+    ...CamStyleData({}),
+  }
 }
 
 export default TheCamStyle
