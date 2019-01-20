@@ -4,6 +4,7 @@
  */
 'use strict'
 
+import '@babel/polyfill'
 import TheCamInput from '../lib/TheCamInput'
 import React from 'react'
 import { ok, equal } from 'assert'
