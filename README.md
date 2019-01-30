@@ -69,6 +69,7 @@ Usage
 ```javascript
 'use strict'
 
+import 'the-polyfill/apply' // Some browser needs polyfill for ImageCapture API
 import React from 'react'
 import { TheCam, TheCamStyle, TheCamInput } from 'the-cam'
 import { TheSpinStyle } from 'the-spin'
