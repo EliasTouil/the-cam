@@ -14,9 +14,12 @@ import TheCam from './TheCam'
 class TheCamInput extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {}
+    this.state = {
+      rejected: false,
+    }
     this.handleShutter = this.handleShutter.bind(this)
     this.handleMedia = this.handleMedia.bind(this)
+    this.handleReject = this.handleReject.bind(this)
     this.handleClear = this.handleClear.bind(this)
   }
 
@@ -29,6 +32,14 @@ class TheCamInput extends React.Component {
   componentWillUnmount () {
   }
 
+  handleReject (e) {
+    const { onReject } = this.props
+    this.setState({
+      rejected: true,
+    })
+    onReject && onReject(e)
+  }
+
   render () {
     const { props, state } = this
     const {
@@ -36,11 +47,11 @@ class TheCamInput extends React.Component {
       children,
       className,
       height,
-      onReject,
       value,
       video,
       width,
     } = props
+    const { rejected } = state
     const hasValue = !!value
     return (
       <div {...htmlAttributesFor(props, {
@@ -58,12 +69,12 @@ class TheCamInput extends React.Component {
         <TheCam {...{
           audio,
           height,
-          onReject,
           video,
           width,
         }}
                 enabled={!hasValue}
                 onMedia={this.handleMedia}
+                onReject={this.handleReject}
         />
         {
           hasValue && (
@@ -82,7 +93,7 @@ class TheCamInput extends React.Component {
           )
         }
         {
-          !hasValue && (
+          (!rejected && !hasValue) && (
             <div className='the-cam-input-action'>
               <a className='the-cam-input-shutter'
                  onClick={this.handleShutter}
