@@ -1,15 +1,15 @@
 /**
- * Test for CamStyleData.
+ * Test for CamInputStyleData.
  * Runs with mocha.
  */
 'use strict'
 
-import CamInputStyleData from '../lib/styleData/CamStyleData'
+import CamInputStyleData from '../lib/styleData/CamInputStyleData'
 import React from 'react'
 import { ok, equal } from 'assert'
 import { render } from 'the-script-test'
 
-describe('cam-style-data', () => {
+describe('cam-input-style-data', () => {
   before(() => {
   })
 

@@ -2,9 +2,9 @@
 
 import { asStyleData, colorAlpha } from 'the-component-util'
 
-function CamStyleData ({
-                         shutterSize = 44,
-                       }) {
+function CamInputStyleData ({
+                              shutterSize = 44,
+                            }) {
   return asStyleData({
     '.the-cam-input': {
       position: 'relative',
@@ -65,4 +65,4 @@ function CamStyleData ({
   })
 }
 
-export default CamStyleData
+export default CamInputStyleData

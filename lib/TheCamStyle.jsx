@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { asStyleData } from 'the-component-util'
 import { TheStyle } from 'the-style'
-import CamStyleData from './styleData/CamStyleData'
+import CamInputStyleData from './styleData/CamStyleData'
 
 /** Style for TheCam */
 const TheCamStyle = ({ className, id, options }) => (
@@ -54,7 +54,7 @@ TheCamStyle.data = (options) => {
       },
 
     }),
-    ...CamStyleData({}),
+    ...CamInputStyleData({}),
   }
 }
 

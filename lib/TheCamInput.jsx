@@ -68,8 +68,10 @@ class TheCamInput extends React.Component {
         {
           hasValue && (
             <div className='the-cam-input-preview'>
-              <img className='the-cam-input-preview-img'
+              <img alt='captured image'
+                   className='the-cam-input-preview-img'
                    src={value}
+                   style={{ height, width }}
               />
               <a className='the-cam-input-clear'
                  onClick={this.handleClear}
