@@ -167,6 +167,18 @@
     "displayName": "TheCamInput",
     "methods": [
       {
+        "name": "handleReject",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "e",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
         "name": "handleClear",
         "docblock": null,
         "modifiers": [
