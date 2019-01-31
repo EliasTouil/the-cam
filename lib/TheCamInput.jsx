@@ -124,7 +124,12 @@ class TheCamInput extends React.Component {
       const { convertFile, name, onUpdate } = props
       const File = get('File', { strict: true })
       const blob = await media.takePhoto({})
-      const file = await convertFile(new File([blob], newId({ prefix: 'the-cam-input-value' })))
+      let filename = newId({ prefix: 'the-cam-input-value' })
+      const file = await convertFile(
+        new File([blob], filename, {
+          type: blob.type,
+        })
+      )
       onUpdate({ [name]: file })
     } finally {
       this.setState({ busy: false })
