@@ -154,6 +154,7 @@ Embed camera component
 | `video` | union  | Video media constraint | `true` |
 | `width` | union  |  | `'100%'` |
 | `onReject` |   |  | `null` |
+| `spinning` |   |  | `false` |
 
 ### TheCamInput
 
