@@ -95,7 +95,7 @@ class TheCamInput extends React.Component {
           )
         }
         {
-          (!rejected && !hasValue) && (
+          (!rejected && !hasValue && !busy) && (
             <div className='the-cam-input-action'>
               <a className='the-cam-input-shutter'
                  onClick={this.handleShutter}
