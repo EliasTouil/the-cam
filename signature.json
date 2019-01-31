@@ -159,6 +159,13 @@
           "computed": false
         },
         "required": false
+      },
+      "spinning": {
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        },
+        "required": false
       }
     }
   },
