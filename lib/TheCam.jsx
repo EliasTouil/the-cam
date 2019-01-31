@@ -13,7 +13,7 @@ import { TheSpin } from 'the-spin'
  * Embed camera component
  */
 class TheCam extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.videoRef = props.videoRef || React.createRef()
 
@@ -27,7 +27,7 @@ class TheCam extends React.Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     void this.applyEnabled(!this.props.disabled)
 
     const { onMedia, onVideo } = this.props
@@ -35,7 +35,7 @@ class TheCam extends React.Component {
     onMedia && onMedia(this.media)
   }
 
-  componentDidUpdate (prevPros) {
+  componentDidUpdate(prevPros) {
     const diff = changedProps(prevPros, this.props)
     if ('disabled' in diff) {
       void this.applyEnabled(!diff.disabled)
@@ -48,24 +48,25 @@ class TheCam extends React.Component {
     })
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.state.running) {
       void this.stop()
     }
   }
 
-  handleVideoLoad () {
+  handleVideoLoad() {
     const { onReady } = this.props
     console.log('!!!onReady', !!onReady)
   }
 
-  render () {
+  render() {
     const { props, state } = this
     const {
       children,
       className,
       height,
       rejectedMessage,
+      spinning,
       width,
     } = props
     const { busy, rejected } = state
@@ -77,7 +78,7 @@ class TheCam extends React.Component {
         <div className='the-cam-inner'
              style={{ height, width }}
         >
-          {busy && (
+          {(busy || spinning) && (
             <TheSpin className='the-cam-spin'
                      cover
                      enabled
@@ -104,7 +105,7 @@ class TheCam extends React.Component {
     )
   }
 
-  async applyEnabled (enabled) {
+  async applyEnabled(enabled) {
     if (enabled) {
       await this.start()
     } else {
@@ -112,7 +113,7 @@ class TheCam extends React.Component {
     }
   }
 
-  async start () {
+  async start() {
     const { media } = this
     this.setState({ busy: true })
     await asleep(0)
@@ -137,7 +138,7 @@ class TheCam extends React.Component {
     }
   }
 
-  async stop () {
+  async stop() {
     const video = this.videoRef.current
     const { media } = this
     try {
@@ -185,6 +186,7 @@ TheCam.defaultProps = {
   onReject: null,
   onStream: null,
   rejectedMessage: 'Failed to access camera',
+  spinning: false,
   video: true,
   width: '100%',
 }

@@ -12,9 +12,10 @@ import TheCam from './TheCam'
  * Embed camera component
  */
 class TheCamInput extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
+      busy: false,
       rejected: false,
     }
     this.handleShutter = this.handleShutter.bind(this)
@@ -23,16 +24,16 @@ class TheCamInput extends React.Component {
     this.handleClear = this.handleClear.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
   }
 
-  componentDidUpdate (prevPros) {
+  componentDidUpdate(prevPros) {
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
   }
 
-  handleReject (e) {
+  handleReject(e) {
     const { onReject } = this.props
     this.setState({
       rejected: true,
@@ -40,7 +41,7 @@ class TheCamInput extends React.Component {
     onReject && onReject(e)
   }
 
-  render () {
+  render() {
     const { props, state } = this
     const {
       audio,
@@ -51,7 +52,7 @@ class TheCamInput extends React.Component {
       video,
       width,
     } = props
-    const { rejected } = state
+    const { busy, rejected } = state
     const hasValue = !!value
     return (
       <div {...htmlAttributesFor(props, {
@@ -75,6 +76,7 @@ class TheCamInput extends React.Component {
                 enabled={!hasValue}
                 onMedia={this.handleMedia}
                 onReject={this.handleReject}
+                spinning={busy}
         />
         {
           hasValue && (
@@ -87,7 +89,7 @@ class TheCamInput extends React.Component {
               <a className='the-cam-input-clear'
                  onClick={this.handleClear}
               >
-                <TheIcon className={TheCam.CLEAR_ICON}/>
+                <TheIcon className={TheCam.CLEAR_ICON} />
               </a>
             </div>
           )
@@ -106,22 +108,27 @@ class TheCamInput extends React.Component {
     )
   }
 
-  async handleClear () {
+  async handleClear() {
     const { name, onUpdate } = this.props
     onUpdate({ [name]: null })
   }
 
-  async handleMedia (media) {
+  async handleMedia(media) {
     this.media = media
   }
 
-  async handleShutter () {
-    const { media, props } = this
-    const { convertFile, name, onUpdate } = props
-    const File = get('File', { strict: true })
-    const blob = await media.takePhoto({})
-    const file = await convertFile(new File([blob], newId({ prefix: 'the-cam-input-value' })))
-    onUpdate({ [name]: file })
+  async handleShutter() {
+    this.setState({ busy: true })
+    try {
+      const { media, props } = this
+      const { convertFile, name, onUpdate } = props
+      const File = get('File', { strict: true })
+      const blob = await media.takePhoto({})
+      const file = await convertFile(new File([blob], newId({ prefix: 'the-cam-input-value' })))
+      onUpdate({ [name]: file })
+    } finally {
+      this.setState({ busy: false })
+    }
   }
 }
 
