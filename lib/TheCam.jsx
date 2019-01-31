@@ -56,7 +56,7 @@ class TheCam extends React.Component {
 
   handleVideoLoad() {
     const { onReady } = this.props
-    console.log('!!!onReady', !!onReady)
+    onReady && onReady()
   }
 
   render() {

@@ -73,7 +73,7 @@ class TheCamInput extends React.Component {
           video,
           width,
         }}
-                enabled={!hasValue}
+                disabled={hasValue}
                 onMedia={this.handleMedia}
                 onReject={this.handleReject}
                 spinning={busy}
