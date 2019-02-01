@@ -126,7 +126,9 @@ class TheCam extends React.Component {
       throw e
     }
     const video = this.videoRef.current
-    await media.bindVideo(video, {})
+    if (video) {
+      await media.bindVideo(video, {})
+    }
     this.setState({ busy: false, rejected: false, running: true })
 
     // Call backs
