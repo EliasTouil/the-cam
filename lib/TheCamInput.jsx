@@ -8,6 +8,8 @@ import { TheIcon } from 'the-icon'
 import { get } from 'the-window'
 import TheCam from './TheCam'
 
+const noop = () => null
+
 /**
  * Embed camera component
  */
@@ -18,10 +20,12 @@ class TheCamInput extends React.Component {
       busy: false,
       rejected: false,
     }
+    this.id = newId()
     this.handleShutter = this.handleShutter.bind(this)
     this.handleMedia = this.handleMedia.bind(this)
     this.handleReject = this.handleReject.bind(this)
     this.handleClear = this.handleClear.bind(this)
+    this.handleUploadChange = this.handleUploadChange.bind(this)
   }
 
   componentDidMount() {
@@ -48,6 +52,10 @@ class TheCamInput extends React.Component {
       children,
       className,
       height,
+      id = this.id,
+      name,
+      readOnly,
+      style = {},
       value,
       video,
       width,
@@ -60,24 +68,60 @@ class TheCamInput extends React.Component {
           'className',
           'width',
           'height',
+          'readOnly',
           'value',
         ],
       })}
            {...eventHandlersFor(props, { except: [] })}
            className={c('the-cam-input', className)}
-           style={{ height, width }}
+           data-name={name}
+           id={id}
+           style={{ ...style, height, width }}
       >
-        <TheCam {...{
-          audio,
-          height,
-          video,
-          width,
-        }}
-                disabled={hasValue}
-                onMedia={this.handleMedia}
-                onReject={this.handleReject}
-                spinning={busy}
-        />
+        {
+          !rejected && (
+            <TheCam {...{
+              audio,
+              height,
+              video,
+              width,
+            }}
+                    disabled={hasValue}
+                    onMedia={this.handleMedia}
+                    onReject={this.handleReject}
+                    spinning={busy}
+            >
+              <input name={name} onChange={noop}
+                     type='hidden'
+                     value={value || ''}
+              />
+            </TheCam>
+          )
+        }
+        {
+          (rejected && !hasValue) && (
+            <div className='the-cam-input-upload'
+                 style={(readOnly) ? {} : { height, width }}
+            >
+              <input accept='image/*'
+                     capture
+                     className='the-cam-input-upload-input'
+                     id={`${id}-file`}
+                     type='file'
+                     {...{ name, readOnly }}
+                     onChange={this.handleUploadChange}
+                     tabIndex={-1}
+
+                     value={value || ''}
+              />
+              <label className='the-cam-input-upload-label'
+                     htmlFor={`${id}-file`}
+              >
+                <i className={c('the-cam-input-upload-icon', TheCamInput.UPLOAD_ICON)} />
+              </label>
+            </div>
+          )
+        }
         {
           hasValue && (
             <div className='the-cam-input-preview'>
@@ -89,7 +133,7 @@ class TheCamInput extends React.Component {
               <a className='the-cam-input-clear'
                  onClick={this.handleClear}
               >
-                <TheIcon className={TheCam.CLEAR_ICON} />
+                <TheIcon className={TheCamInput.CLEAR_ICON} />
               </a>
             </div>
           )
@@ -104,6 +148,7 @@ class TheCamInput extends React.Component {
             </div>
           )
         }
+        {children}
       </div>
     )
   }
@@ -135,6 +180,18 @@ class TheCamInput extends React.Component {
       this.setState({ busy: false })
     }
   }
+
+  async handleUploadChange(e) {
+    const { convertFile, name, onUpdate } = this.props
+    this.setState({ busy: true })
+    try {
+      const [file] = e.target.files
+      const converted = file ? await convertFile(file) : null
+      onUpdate({ [name]: converted })
+    } finally {
+      this.setState({ busy: false })
+    }
+  }
 }
 
 TheCamInput.propTypes = {
@@ -158,7 +215,8 @@ TheCamInput.defaultProps = {
   width: TheCam.defaultProps.width,
 }
 
-TheCam.CLEAR_ICON = 'fas fa-times'
+TheCamInput.UPLOAD_ICON = 'fas fa-cloud-upload-alt'
+TheCamInput.CLEAR_ICON = 'fas fa-times'
 TheCamInput.displayName = 'TheCamInput'
 
 export default TheCamInput

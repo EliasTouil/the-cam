@@ -54,7 +54,9 @@ TheCamStyle.data = (options) => {
       },
 
     }),
-    ...CamInputStyleData({}),
+    ...CamInputStyleData({
+      dominantColor,
+    }),
   }
 }
 

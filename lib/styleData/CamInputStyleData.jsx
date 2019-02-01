@@ -3,6 +3,7 @@
 import { asStyleData, colorAlpha } from 'the-component-util'
 
 function CamInputStyleData({
+                             dominantColor,
                              shutterSize = 44,
                            }) {
   return asStyleData({
@@ -26,7 +27,7 @@ function CamInputStyleData({
     '.the-cam-input-clear': {
       alignItems: 'center',
       background: 'rgba(255,255,255,0.1)',
-      borderRadius: '4px',
+      borderRadius: '2px',
       boxSizing: 'border-box',
       color: '#888',
       display: 'inline-flex',
@@ -62,6 +63,52 @@ function CamInputStyleData({
       cursor: 'pointer',
       height: shutterSize,
       width: shutterSize,
+    },
+    '.the-cam-input-upload': {
+      display: 'block',
+      height: '64px',
+      margin: '16px auto',
+      position: 'relative',
+      textAlign: 'center',
+      width: '64px',
+    },
+    '.the-cam-input-upload-icon': {
+      '&:active': {
+        boxShadow: '1px 1px 2px rgba(0,0,0,0.33) inset',
+      },
+      '&:hover': {
+        background: '#F8F8F8',
+      },
+      alignItems: 'center',
+      background: 'white',
+      border: '1px solid',
+      borderRadius: '50%',
+      color: dominantColor,
+      cursor: 'pointer',
+      display: 'inline-flex',
+      fontSize: '44px',
+      height: '64px',
+      justifyContent: 'center',
+      padding: '16px',
+      width: '64px',
+    },
+    '.the-cam-input-upload-input': {
+      cursor: 'pointer',
+      display: 'inline-block',
+      opacity: 0,
+      position: 'relative',
+      zIndex: 2,
+    },
+    '.the-cam-input-upload-label': {
+      alignItems: 'center',
+      bottom: 0,
+      display: 'flex',
+      justifyContent: 'center',
+      left: 0,
+      position: 'absolute',
+      right: 0,
+      top: 0,
+      zIndex: 1,
     },
   })
 }
