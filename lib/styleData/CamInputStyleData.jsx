@@ -50,6 +50,7 @@ function CamInputStyleData({
       top: 0,
     },
     '.the-cam-input-preview-img': {
+      boxShadow: '0 0 4px rgba(0,0,0,0.33)',
       height: '100%',
       maxHeight: '100%',
       objectFit: 'contain',

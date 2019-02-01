@@ -128,8 +128,8 @@ class TheCam extends React.Component {
     const video = this.videoRef.current
     if (video) {
       await media.bindVideo(video, {})
+      this.setState({ busy: false, rejected: false, running: true })
     }
-    this.setState({ busy: false, rejected: false, running: true })
 
     // Call backs
     {
@@ -143,13 +143,16 @@ class TheCam extends React.Component {
   async stop() {
     const video = this.videoRef.current
     const { media } = this
+    if (video) {
+      video.srcObject = null
+      this.setState({ busy: false, rejected: false, running: false })
+    }
+
     try {
       await media.stop()
     } catch (e) {
       // Do nothing
     }
-    video.srcObject = null
-    this.setState({ busy: false, rejected: false, running: false })
 
     // Callbacks
     {
