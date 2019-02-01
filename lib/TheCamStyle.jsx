@@ -30,6 +30,7 @@ TheCamStyle.data = (options) => {
   const {
     dominantColor = ThemeValues.dominantColor,
     errorColor = ThemeValues.errorColor,
+    tappableHeight = ThemeValues.tappableHeight,
   } = options
   return {
     ...asStyleData({

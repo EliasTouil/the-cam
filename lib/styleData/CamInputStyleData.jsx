@@ -4,7 +4,7 @@ import { asStyleData, colorAlpha } from 'the-component-util'
 
 function CamInputStyleData({
                              dominantColor,
-                             shutterSize = 44,
+                             tappableHeight,
                            }) {
   return asStyleData({
     '.the-cam-input': {
@@ -62,8 +62,9 @@ function CamInputStyleData({
       borderRadius: '50%',
       boxSizing: 'border-box',
       cursor: 'pointer',
-      height: shutterSize,
-      width: shutterSize,
+      height: tappableHeight,
+      margin: '2px auto',
+      width: tappableHeight,
     },
     '.the-cam-input-upload': {
       display: 'block',
