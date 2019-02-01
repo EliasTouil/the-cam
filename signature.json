@@ -216,6 +216,20 @@
         ],
         "params": [],
         "returns": null
+      },
+      {
+        "name": "handleUploadChange",
+        "docblock": null,
+        "modifiers": [
+          "async"
+        ],
+        "params": [
+          {
+            "name": "e",
+            "type": null
+          }
+        ],
+        "returns": null
       }
     ],
     "props": {
