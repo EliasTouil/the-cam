@@ -57,6 +57,7 @@ TheCamStyle.data = (options) => {
     }),
     ...CamInputStyleData({
       dominantColor,
+      tappableHeight,
     }),
   }
 }

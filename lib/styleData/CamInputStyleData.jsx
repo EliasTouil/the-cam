@@ -6,6 +6,7 @@ function CamInputStyleData({
                              dominantColor,
                              tappableHeight,
                            }) {
+  const tappableSize = tappableHeight
   return asStyleData({
     '.the-cam-input': {
       position: 'relative',
@@ -31,13 +32,13 @@ function CamInputStyleData({
       boxSizing: 'border-box',
       color: '#888',
       display: 'inline-flex',
-      height: '44px',
+      height: tappableSize,
       justifyContent: 'center',
       padding: '8px',
       position: 'absolute',
-      right: '4px',
-      top: '4px',
-      width: '44px',
+      right: '0px',
+      top: '0px',
+      width: tappableSize,
     },
     '.the-cam-input-preview': {
       alignItems: 'center',
@@ -62,9 +63,9 @@ function CamInputStyleData({
       borderRadius: '50%',
       boxSizing: 'border-box',
       cursor: 'pointer',
-      height: tappableHeight,
+      height: tappableSize,
       margin: '2px auto',
-      width: tappableHeight,
+      width: tappableSize,
     },
     '.the-cam-input-upload': {
       display: 'block',
