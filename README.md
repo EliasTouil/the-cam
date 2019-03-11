@@ -93,7 +93,7 @@ class ExampleComponent extends React.Component {
       <div>
         <TheCamStyle/>
         <TheSpinStyle/>
-        <TheCam onStrat={() => console.log('camera started')}
+        <TheCam onStart={() => console.log('camera started')}
                 onStop={() => console.log('camera stopped')}
                 disabled={this.state.disabled}
         >
